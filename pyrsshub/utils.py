@@ -61,7 +61,7 @@ def send_email(ctx, _filter:bool):
         mail_user = ''  # 用户名
         mail_pass = ''  # 口令
         sender = ''
-        receivers = ['username@163.com']  # 接收邮件，可设置为你的QQ邮箱或者其他邮箱
+        receivers = ['username@qq.com']  # 接收邮件，可设置为你的QQ邮箱或者其他邮箱
         message = MIMEText(mail_msg, 'html', 'utf-8')
         def format_addr(s):
             name, addr = parseaddr(s)
