@@ -58,10 +58,10 @@ def send_email(ctx, _filter:bool):
     else:
         # 第三方 SMTP 服务
         mail_host = "smtp.qq.com"  # 设置服务器
-        mail_user = "1661267808@qq.com"  # 用户名
-        mail_pass = "avbkuuhgxtqmebjb"  # 口令
-        sender = '1661267808@qq.com'
-        receivers = ['wld_0417@163.com']  # 接收邮件，可设置为你的QQ邮箱或者其他邮箱
+        mail_user = ''  # 用户名
+        mail_pass = ''  # 口令
+        sender = ''
+        receivers = ['username@163.com']  # 接收邮件，可设置为你的QQ邮箱或者其他邮箱
         message = MIMEText(mail_msg, 'html', 'utf-8')
         def format_addr(s):
             name, addr = parseaddr(s)
@@ -89,7 +89,7 @@ def send_ding(ctx, _filter:bool):
     if text.strip()=='':
         pass
     else:
-        webhook = 'https://oapi.dingtalk.com/robot/send?access_token=9e8f97166ded4a2dd416b3c3542df6d974d223c8d171fe56bb42ae5a6edbefb6'
+        webhook = ''
         data = {
             "msgtype": "markdown",
             "markdown": {
