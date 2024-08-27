@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, request
-
+from pyrsshub.utils import send_email
+from pyrsshub.utils import send_ding
 bp = Blueprint('main', __name__)
 
 
@@ -225,3 +226,75 @@ def yfchuhai_express():
 def jiucai_community(start=''):
     from pyrsshub.spiders.jiucaigongshe.community import ctx
     return render_template('main/atom.xml', **filter_content(ctx(start)))
+
+
+@bp.route("/zhihu/column/<string:category>")
+def zhihu_columns(category=""):
+    from pyrsshub.spiders.zhihu.zhihu_columns import ctx
+
+    a = ctx(category)
+    # send_email(a, _filter=True)
+    send_ding(a, _filter=True)
+    return render_template("main/atom.xml", **filter_content(a))
+
+
+@bp.route("/zhihu/topic/<string:category>")
+def zhihu_topic(category=""):
+    from pyrsshub.spiders.zhihu.zhihu_topic import ctx
+
+    a = ctx(category)
+    send_email(a, _filter=True)
+    return render_template("main/atom.xml", **filter_content(a))
+
+
+@bp.route("/apsgo/auctions")
+def apsgo():
+    from pyrsshub.spiders.apsgo.apsgo import ctx
+
+    a = ctx()
+    send_email(a, _filter=False)
+    return render_template("main/atom.xml", **filter_content(a))
+
+
+@bp.route("/csdn/nav/<string:category>/<string:category2>")
+def csdn_blog(category="", category2=""):
+    from pyrsshub.spiders.csdn.csdn_nav import ctx
+
+    a = ctx(category, category2)
+    send_email(a, _filter=True)
+    return render_template("main/rss.xml", **filter_content(a))
+
+
+@bp.route("/csdn/author/<string:category>")
+def csdn_author(category=""):
+    from pyrsshub.spiders.csdn.csdn_author import ctx
+
+    a = ctx(category)
+    send_email(a, _filter=True)
+    return render_template("main/atom.xml", **filter_content(a))
+
+
+@bp.route("/cwwnet")
+def cwwwnet():
+    from pyrsshub.spiders.cwwnet.cww import ctx
+
+    a = ctx()
+    # send_email(a, _filter= True)
+    return render_template("main/atom.xml", **filter_content(a))
+
+
+@bp.route("/51cto/user/posts/<string:category>")
+def userposts(category=""):
+    from pyrsshub.spiders.cto.userposts import ctx
+
+    a = ctx(category)
+    # send_email(a, _filter= True)
+    return render_template("main/atom.xml", **filter_content(a))
+
+@bp.route("/1000qm/forumdisplay/<string:category>")
+def qmforum(category=""):
+    from pyrsshub.spiders.qm.forum import ctx
+
+    a = ctx(category)
+    # send_email(a, _filter= True)
+    return render_template("main/rss.xml", **filter_content(a))

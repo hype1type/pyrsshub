@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0">
+   <channel>
+       <title>{{title|safe}}</title>
+       <link>{{link}}</link>
+       <description>{{description|safe}}</description>
+       <copyright>{{link}}</copyright>
+       <generator>{{config['SITE_NAME']}}</generator>
+       <lastBuildDate>Tue, 20 Aug 2024 04:51:21 +0000</lastBuildDate>
+       <author>
+           <name>{{author|safe}}</name>
+       </author>
+        {% for item in items %}
+       
+       <item>
+           <title>{{item.title|safe}}</title>
+           <link>{{item.link}}</link>
+           <description>{{item.description|safe}}</description>
+           <author>{{item.author|safe}}</author>
+           <pubDate>{{item.pubDate|default(now)}}</pubDate>
+       </item>
+          {% endfor %}
+   
+   </channel>
+</rss>
