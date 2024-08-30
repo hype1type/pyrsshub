@@ -12,16 +12,19 @@ def parse(post):
 
 
 def ctx(query=''):
-    from urllib.parse import quote
-    query = quote(query, encoding="GBK")
-    web_site = f"https://www.akitashoten.co.jp/comics/search?utf8=%E2%9C%93&q={query}"
+    # from urllib.parse import quote
+    # query = quote(query, encoding="GBK")
+    web_site = f"https://www.akitashoten.co.jp/comics/search"
+    p_query = {
+    "q": f"{query}"
+}
     default_headers = {
         "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",
         "user-agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36",
         "referer": web_site,
     }
 
-    tree = fetch(web_site, headers=default_headers)
+    tree = fetch(web_site, headers=default_headers,para_query=p_query)
     _title = [f'{query}-搜索结果']
     _link = web_site
     _items = tree.css('div[class="book"]')
