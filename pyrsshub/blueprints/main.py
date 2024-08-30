@@ -353,3 +353,10 @@ def akitashoten_year(year="",page=""):
     a = ctx(year,page)
     # send_email(a, _filter= True)
     return render_template("main/rss.xml", **filter_content(a))
+
+@bp.route("/akitashoten/comic/search/<string:query>")
+def akitashoten_search(query=""):
+    from pyrsshub.spiders.akitashoten.search import ctx
+    a = ctx(query)
+    # send_email(a, _filter= True)
+    return render_template("main/rss.xml", **filter_content(a))
