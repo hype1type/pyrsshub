@@ -12,6 +12,8 @@ def parse(post):
 
 
 def ctx(query=''):
+    from urllib.parse import quote
+    query = quote(query, encoding="GBK")
     web_site = f"https://www.akitashoten.co.jp/comics/search?utf8=%E2%9C%93&q={query}"
     default_headers = {
         "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",
