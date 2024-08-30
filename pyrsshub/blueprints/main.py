@@ -318,3 +318,38 @@ def qmforum(category=""):
     a = ctx(category)
     # send_email(a, _filter= True)
     return render_template("main/rss.xml", **filter_content(a))
+
+@bp.route("/akitashoten/comic")
+def akitashoten_comic():
+    from pyrsshub.spiders.akitashoten.comic import ctx
+    a = ctx()
+    # send_email(a, _filter= True)
+    return render_template("main/rss.xml", **filter_content(a))
+
+@bp.route("/akitashoten/comic/comingsoon/<string:page>")
+def akitashoten_comingsoon(page=""):
+    from pyrsshub.spiders.akitashoten.comic_comingsoon import ctx
+    a = ctx(page)
+    # send_email(a, _filter= True)
+    return render_template("main/rss.xml", **filter_content(a))
+
+@bp.route("/akitashoten/comic/new")
+def akitashoten_new():
+    from pyrsshub.spiders.akitashoten.comic_new import ctx
+    a = ctx()
+    # send_email(a, _filter= True)
+    return render_template("main/rss.xml", **filter_content(a))
+
+@bp.route("/akitashoten/comic/recommend")
+def akitashoten_recommend():
+    from pyrsshub.spiders.akitashoten.comic_recommend import ctx
+    a = ctx()
+    # send_email(a, _filter= True)
+    return render_template("main/rss.xml", **filter_content(a))
+
+@bp.route("/akitashoten/comic/year/<string:year>/<string:page>")
+def akitashoten_year(year="",page=""):
+    from pyrsshub.spiders.akitashoten.comic_year import ctx
+    a = ctx(year,page)
+    # send_email(a, _filter= True)
+    return render_template("main/rss.xml", **filter_content(a))
