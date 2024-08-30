@@ -326,10 +326,10 @@ def akitashoten_comic():
     # send_email(a, _filter= True)
     return render_template("main/rss.xml", **filter_content(a))
 
-@bp.route("/akitashoten/comic/comingsoon/<string:page>")
-def akitashoten_comingsoon(page=""):
+@bp.route("/akitashoten/comic/comingsoon/<string:month>/<string:page>")
+def akitashoten_comingsoon(month="",page=""):
     from pyrsshub.spiders.akitashoten.comic_comingsoon import ctx
-    a = ctx(page)
+    a = ctx(month,page)
     # send_email(a, _filter= True)
     return render_template("main/rss.xml", **filter_content(a))
 

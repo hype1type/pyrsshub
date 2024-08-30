@@ -11,8 +11,8 @@ def parse(post):
     return item
 
 
-def ctx(page=''):
-    web_site = f"https://www.akitashoten.co.jp/comics/comingsoon/{page}"
+def ctx(month='',page=''):
+    web_site = f"https://www.akitashoten.co.jp/comics/comingsoon/{month}?page={page}"
     default_headers = {
         "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",
         "user-agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36",
