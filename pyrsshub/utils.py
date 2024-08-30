@@ -17,9 +17,9 @@ class XMLResponse(Response):
         return super().__init__(response, **kwargs)
 
 
-def fetch(url: str, headers: dict = default_headers, proxies: dict = None,para_query: dict = None):
+def fetch(url: str, headers: dict = default_headers, proxies: dict = None):
     try:
-        res = requests.get(url, headers=headers, proxies=proxies,data=json.dumps(para_query))
+        res = requests.get(url, headers=headers, proxies=proxies)
         res.raise_for_status()
     except Exception as e:
         print(f'[Err] {e}')

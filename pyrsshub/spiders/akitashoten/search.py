@@ -1,4 +1,5 @@
-from pyrsshub.utils import fetch
+from parsel import Selector
+import requests
 
 
 def parse(post):
@@ -12,23 +13,18 @@ def parse(post):
 
 
 def ctx(query=''):
-    # from urllib.parse import quote
-    # query = quote(query, encoding="GBK")
-    web_site = f"https://www.akitashoten.co.jp/comics/search"
-    p_query = {
-    "q": f"{query}"
-}
+    web_site = f"https://www.akitashoten.co.jp/comics/search?q={query}"
     default_headers = {
         "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",
         "user-agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36",
-        "referer": web_site,
     }
 
-    tree = fetch(web_site, headers=default_headers,para_query=p_query)
+    res = requests.get(web_site, headers=default_headers)
+    html = res.text
+    tree = Selector(text=html)
     _title = [f'{query}-搜索结果']
     _link = web_site
     _items = tree.css('div[class="book"]')
-    # print(_items)
 
     return {
         "title": "秋田书店-" + _title[0],
