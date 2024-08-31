@@ -8,6 +8,7 @@ default_headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) Appl
 
 zhihu_cookie = ''
 qm_cookie = ''
+lkongcookie = ''
 
 class XMLResponse(Response):
     def __init__(self, response, **kwargs):
