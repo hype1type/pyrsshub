@@ -368,3 +368,10 @@ def lkong_forum(category=""):
     a = ctx(category)
     # send_email(a, _filter= True)
     return render_template("main/rss.xml", **filter_content(a))
+
+@bp.route("/hacg/forum/<string:forum>")
+def hacg_forum(forum=""):
+    from pyrsshub.spiders.hacg.forum import ctx
+    a = ctx(forum)
+    # send_email(a, _filter= True)
+    return render_template("main/rss.xml", **filter_content(a))
